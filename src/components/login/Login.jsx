@@ -1,5 +1,8 @@
 import { useState } from "react"
-import { Card, Form, Row, FormGroup, Button, Col } from "react-bootstrap";
+import { Form, Row, Button, Col, Container } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from "../../img/Logo-Diego.jpg";
+import './Login.css'
 
 
 const Login = () => {
@@ -14,59 +17,57 @@ const Login = () => {
         setPassword(e.target.value);
     }
 
-    
-
-
-
     return (
-        <div>
-            <Col>
-                <img src= "" alt="" />
-            </Col>
-             <Col>
-            <Card>
-                <Card.Body>
-                    <Row>
-                        <h1>Iniciar sesión</h1>
-                    </Row>
-                    <Form>
-                        <FormGroup>
-                            <Form.Control
-                                placeholder="Ingrese su email"
-                                type="email"
-                                value={email}
-                                onChange={handleEmailChange}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <Form.Control
-                                placeholder="Ingrese su password"
-                                type="password"
-                                value={password}
-                                onChange={handlePasswordChange}
-                            />
-                        </FormGroup>
 
-                    </Form>
-                    <Row>
-                        <Col />
-                        <Col>
-                            <Button variant="secondary" >
-                                Iniciar sesión
+        <Container fluid className="login-container">
+
+            <Row className="align-items-center justify-content-center min-vh-100">
+                <hr />
+                <Col xs={12} md={6} className="d-none d-md-block p-0">
+                    <div className="image-container">
+                        <img src={logo}
+                            alt="Logo-Diego"
+                            className="img-fluid"
+                        />
+                    </div>
+                </Col>
+
+                <Col xs={12} md={6} className="d-flex align-items-center justify-content-center">
+                    <div className="login-form">
+                        <h2 className="text-center">Iniciar Sesión</h2>
+                        <Form>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    placeholder="Ingrese su email"
+                                    onChange={handleEmailChange}
+                                    value={email}
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3">
+                                <Form.Label>Contraseña</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Ingrese su contraseña"
+                                    onChange={handlePasswordChange}
+                                    value={password}
+                                />
+                            </Form.Group>
+
+                            <Button variant="dark" className="w-100 mb-3">
+                                Iniciar Sesión
                             </Button>
-
-                        </Col>
-                    </Row>
-                </Card.Body>
-            </Card>
-        </Col>
-        
-        </div>
-       
-        
-
-
-
+                            <div>
+                                <a href="" className="text-dark">No tienes cuenta? Regístrate aquí</a>
+                            </div>
+                        </Form>
+                    </div>
+                </Col>
+                <hr />
+            </Row>
+        </Container>
     )
 }
 

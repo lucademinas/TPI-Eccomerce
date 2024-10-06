@@ -1,14 +1,19 @@
-import { useNavigate } from 'react-router-dom'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './components/login/Login';
 
 const App = () => {
-  // const navigate = useNavigate();
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Login/>
+    }
+ 
+  ]);
+  
   return(
     <div>
-      <Login/>
+      <RouterProvider router={router}/>
     </div>
-
   )
 }
 
