@@ -3,11 +3,13 @@ import { Form, Row, Button, Col, Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "../../img/Logo-Diego.jpg";
 import './Login.css'
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -15,6 +17,10 @@ const Login = () => {
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
+    }
+
+    const handleRegisterClick = () => {
+        navigate("/register");
     }
 
     return (
@@ -59,9 +65,9 @@ const Login = () => {
                             <Button variant="dark" className="w-100 mb-3">
                                 Iniciar Sesión
                             </Button>
-                            <div>
-                                <a href="" className="text-dark">No tienes cuenta? Regístrate aquí</a>
-                            </div>
+                            <Button variant="link" onClick={handleRegisterClick} className="text-dark">
+                                No tienes cuenta? Regístrate aquí
+                            </Button>
                         </Form>
                     </div>
                 </Col>
