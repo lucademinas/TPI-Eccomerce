@@ -6,6 +6,7 @@ import './Login.css'
 import { useNavigate } from "react-router-dom";
 
 
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,6 +22,41 @@ const Login = () => {
 
     const handleRegisterClick = () => {
         navigate("/register");
+    }
+
+    const handleLogin= async ()=>{
+        if(email.length===0){
+            alert("¡Email vacio!")
+            return null
+        }
+
+        if(password.length===0){
+            alert("¡Contraseña Vacia!")
+            return null
+        }
+        /*
+        try {
+            const res = await fetch("direccion de la api",
+                {
+                    method:"POST",
+                    headers:{
+                        "content-type":"application-json"
+                    },
+                    body:JSON.stringify({email,password})
+                }
+                
+            )
+            if(!res.ok){
+                throw res
+            }
+            const data=await res.text()
+            localStorage.setItem("Ecommerce-token",data)
+            navigate("/dashboard")
+        } 
+        catch (e) {
+            console.error(e)
+        }
+            */
     }
 
     return (
@@ -62,7 +98,7 @@ const Login = () => {
                                 />
                             </Form.Group>
 
-                            <Button variant="dark" className="w-100 mb-3">
+                            <Button variant="dark" className="w-100 mb-3" onClick={handleLogin}>
                                 Iniciar Sesión
                             </Button>
                             <Button variant="link" onClick={handleRegisterClick} className="text-dark">
