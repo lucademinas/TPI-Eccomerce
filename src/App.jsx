@@ -3,6 +3,7 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import Protected from './components/protected/Protected';
+import PageNotFound from './components/pageNotFound/PageNotFound';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -19,13 +20,20 @@ const App = () => {
     {
       path: '/dashboard',
       element: <Protected><Dashboard/></Protected>
-    }
+    },
     /*
       {
         path: '/dashboard',
         element: <Dashboard/>
       }
  */
+
+    {
+      path:"*",
+      element:<PageNotFound/>
+    }
+
+
   ]);
   
   return(
