@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Form, Row, Button, Col, Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "../../img/Logo-Diego.jpg";
@@ -10,29 +10,53 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState({ email: false, password: false });
+
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+
+
     const navigate = useNavigate();
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
+        setErrors(prevErrors => ({
+            ...prevErrors,
+            email: e.target.value.length === 0
+        }));
     }
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
+        setErrors(prevErrors => ({
+            ...prevErrors,
+            password: e.target.value.length === 0
+        }));
     }
 
     const handleRegisterClick = () => {
         navigate("/register");
     }
 
-    const handleLogin= async ()=>{
-        if(email.length===0){
+    const handleLogin = async () => {
+        if (emailRef.current.value.length === 0) {
             alert("¡Email vacio!")
-            return null
+            emailRef.current.focus();
+            setErrors(prevErrors => ({
+                ...prevErrors,
+                email: true
+            }));
+            return
         }
 
-        if(password.length===0){
+        if (passwordRef.current.value.length === 0) {
             alert("¡Contraseña Vacia!")
-            return null
+            passwordRef.current.focus();
+            setErrors(prevErrors => ({
+                ...prevErrors,
+                password: true
+            }))
+            return
         }
         /*
         try {
@@ -85,7 +109,9 @@ const Login = () => {
                                     placeholder="Ingrese su email"
                                     onChange={handleEmailChange}
                                     value={email}
+                                    ref={emailRef}
                                 />
+                                {errors.email && <p className="text-danger">El email no debe estar vacío</p>}
                             </Form.Group>
 
                             <Form.Group className="mb-3">
@@ -95,7 +121,9 @@ const Login = () => {
                                     placeholder="Ingrese su contraseña"
                                     onChange={handlePasswordChange}
                                     value={password}
+                                    ref={passwordRef}
                                 />
+                                {errors.password && <p className="text-danger">La contraseña no debe estar vacía</p>}
                             </Form.Group>
 
                             <Button variant="dark" className="w-100 mb-3" onClick={handleLogin}>
