@@ -8,6 +8,7 @@ import GeneralView from "./components/generalView/GeneralView";
 import Navbar from "./components/navbar/CommonNavbar";
 import DetailOrder from "./components/Pages/detailOrder/DetailOrder";
 import ClientView from "./components/clientView/ClientView";
+import SysAdminTable from "./components/sysAdminTable/SysAdminTable";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -52,6 +53,17 @@ const App = () => {
       path: "*",
       element: <PageNotFound />,
     },
+
+
+
+
+
+    
+
+    {
+      path:"/sysadmin",
+      element: <SysAdminTable/>
+    }
   ]);
 
   return (
