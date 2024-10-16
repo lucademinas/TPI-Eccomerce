@@ -1,25 +1,40 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Login from './components/login/Login';
-import Register from './components/register/Register';
-import Dashboard from './components/dashboard/Dashboard';
-import Protected from './components/protected/Protected';
-import PageNotFound from './components/pageNotFound/PageNotFound';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
+import Dashboard from "./components/dashboard/Dashboard";
+import Protected from "./components/protected/Protected";
+import PageNotFound from "./components/pageNotFound/PageNotFound";
+import GeneralView from "./components/generalView/GeneralView";
+import Navbar from "./components/navbar/CommonNavbar";
 
 const App = () => {
   const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <GeneralView>
+          <Login />
+        </GeneralView>
+      ),
+    },
+    {
+      path: "/register",
+      element: (
+        <GeneralView>
+          <Register />
+        </GeneralView>
+      ),
+    },
 
     {
-      path: '/',
-      element: <Login/>
-    },
-    {
-      path: '/register',
-      element: <Register/>
-    },
-    
-    {
-      path: '/dashboard',
-      element: <Protected><Dashboard/></Protected>
+      path: "/dashboard",
+      element: (
+        <GeneralView>
+          {/* <Protected> */}
+          <Dashboard />
+          {/* </Protected> */}
+        </GeneralView>
+      ),
     },
     /*
       {
@@ -29,20 +44,16 @@ const App = () => {
  */
 
     {
-      path:"*",
-      element:<PageNotFound/>
-    }
-
-
+      path: "*",
+      element: <PageNotFound />,
+    },
   ]);
-  
-  return(
+
+  return (
     <div>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </div>
-  )
-}
+  );
+};
 
-
-
-export default App
+export default App;
