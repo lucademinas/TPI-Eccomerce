@@ -6,6 +6,7 @@ import Protected from "./components/protected/Protected";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 import GeneralView from "./components/generalView/GeneralView";
 import Navbar from "./components/navbar/CommonNavbar";
+import SysAdminTable from "./components/sysAdminTable/SysAdminTable";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -47,6 +48,11 @@ const App = () => {
       path: "*",
       element: <PageNotFound />,
     },
+
+    {
+      path:"/sysadmin",
+      element: <SysAdminTable/>
+    }
   ]);
 
   return (
