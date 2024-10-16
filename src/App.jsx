@@ -6,6 +6,8 @@ import Protected from "./components/protected/Protected";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 import GeneralView from "./components/generalView/GeneralView";
 import Navbar from "./components/navbar/CommonNavbar";
+import DetailOrder from "./components/Pages/detailOrder/DetailOrder";
+import ClientView from "./components/clientView/ClientView";
 import SysAdminTable from "./components/sysAdminTable/SysAdminTable";
 
 const App = () => {
@@ -37,12 +39,15 @@ const App = () => {
         </GeneralView>
       ),
     },
-    /*
-      {
-        path: '/dashboard',
-        element: <Dashboard/>
-      }
- */
+
+    {
+      path: "/detailorder",
+      element: (
+        <ClientView>
+          <DetailOrder />
+        </ClientView>
+      ),
+    },
 
     {
       path: "*",
