@@ -91,7 +91,6 @@ const Login = () => {
         <Container fluid className="login-container">
 
             <Row className="align-items-center justify-content-center min-vh-100">
-                <hr />
                 <Col xs={12} md={6} className="d-none d-md-block p-0">
                     <div className="image-container">
                         <img src={logo}
@@ -138,7 +137,6 @@ const Login = () => {
                         </Form>
                     </div>
                 </Col>
-                <hr />
             </Row>
         </Container>
     )
