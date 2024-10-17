@@ -16,7 +16,12 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/Product`)
+    fetch(`${API_BASE_URL}/Product`, {
+      headers: {
+        accept: "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("Ecommerce-token")}`
+      },
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("La respuesta falló");
