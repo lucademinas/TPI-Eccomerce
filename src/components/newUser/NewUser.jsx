@@ -4,13 +4,14 @@ import { Form, Row, Button, Col, Container } from "react-bootstrap";
 import './NewUser.css'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { API_BASE_URL } from "../../api";
 
 const NewUser = () => {
     const [userName, setUserName] = useState("");
     const [userLastName, setUserLastName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
-    const [userRole, setUserRole] = useState("");
+    const [userRol, setUserRol] = useState("");
     const navigate = useNavigate();
 
     const handleNameChange = (e) => {
@@ -29,30 +30,56 @@ const NewUser = () => {
         setUserPassword(e.target.value);
     }
 
-    const handleUserRole = (e) => {
-        setUserRole(e.target.value);
+    const handleUserRol = (e) => {
+        setUserRol(e.target.value);
     }
 
     const handleNavigateClick = () => {
         navigate("/");
-    }    
+    }
 
-    const handleSubmitUser = (e) => {
+    const handleSubmitUser = async (e) => {
         e.preventDefault();
         const newUser = {
-            name : userName,
-            lastName : userLastName,
-            email : userEmail,
-            password : userPassword,
-            role : userRole
+            name: `${userName} ${userLastName}`,
+            email: userEmail,
+            password: userPassword,
+            userRol: userRol
         };
-        setUserName("");
-        setUserLastName("");
-        setUserEmail("");
-        setUserPassword("");
-        setUserRole("");
-    }    
-    
+
+        console.log("Enviando usuario: ", newUser);
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/User`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(newUser)
+            });
+
+            const responseText = await response.text();
+            console.log("Respuesta del servidor:", responseText); 
+
+            if (!response.ok) {
+                throw new Error("Error al registrar usuario: ", responseText);
+            }
+
+            const data = JSON.parse(responseText);
+            console.log("Usuario registrado: ", data);
+
+            setUserName("");
+            setUserLastName("");
+            setUserEmail("");
+            setUserPassword("");
+            setUserRol("");
+            navigate("/login")
+
+        } catch(error){
+            console.error(error);
+        }
+    }
+
     return (
         <Container fluid className="register-container">
 
@@ -116,9 +143,10 @@ const NewUser = () => {
 
                             <Form.Group className="mb-3">
                                 <Form.Label>Rol</Form.Label>
-                                <Form.Select value={userRole} onChange={handleUserRole} >
-                                    <option value="cliente">Cliente</option>
-                                    <option value="administrador">Administrador</option>
+                                <Form.Select value={userRol} onChange={handleUserRol} >
+                                    <option value="">Seleccionar rol</option>
+                                    <option value="Client">Client</option>
+                                    <option value="Admin">Admin</option>
                                 </Form.Select>
                             </Form.Group>
 

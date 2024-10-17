@@ -11,9 +11,22 @@ const SysAdminTable = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/User`)
+                const token = localStorage.getItem("Ecommerce-token");
+                const response = await fetch(`${API_BASE_URL}/User`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                if(!response.ok){
+                    throw new Error("La respuesta falló");
+                }
+
                 const data = await response.json();
                 setUsers(data);
+                
             } catch (error) {
                 console.error("Error fetching users: ", error)
             }
