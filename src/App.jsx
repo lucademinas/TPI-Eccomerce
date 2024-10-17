@@ -13,7 +13,7 @@ import SysAdminTable from "./components/sysAdminTable/SysAdminTable";
 const App = () => {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/login",
       element: (
         <GeneralView>
           <Login />
@@ -30,13 +30,16 @@ const App = () => {
     },
 
     {
-      path: "/dashboard",
+      path: "/",
       element: (
-        <GeneralView>
-          {/* <Protected> */}
-          <Dashboard />
-          {/* </Protected> */}
-        </GeneralView>
+      
+          <Protected>
+            <GeneralView>
+            <Dashboard />
+            </GeneralView>
+          </Protected>
+
+       
       ),
     },
 
@@ -58,11 +61,11 @@ const App = () => {
 
 
 
-    
+
 
     {
-      path:"/sysadmin",
-      element: <SysAdminTable/>
+      path: "/sysadmin",
+      element: <SysAdminTable />
     }
   ]);
 

@@ -3,7 +3,8 @@ import { Form, Row, Button, Col, Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "../../img/Logo-Diego.jpg";
 import './Login.css'
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../api";
 
 
 
@@ -58,29 +59,31 @@ const Login = () => {
             }))
             return
         }
-        /*
-        try {
-            const res = await fetch("direccion de la api",
-                {
-                    method:"POST",
-                    headers:{
-                        "content-type":"application-json"
-                    },
-                    body:JSON.stringify({email,password})
-                }
-                
-            )
-            if(!res.ok){
-                throw res
+
+        try{
+            const response = await fetch(`${API_BASE_URL}/Authentication`, {
+                method: "POST",
+                headers: {
+                    "Content-type" : "application/json"
+                },
+                body: JSON.stringify({email, password})
+            });
+
+            if(!response.ok){
+                throw new Error("Error al iniciar sesión")
             }
-            const data=await res.text()
-            localStorage.setItem("Ecommerce-token",data)
-            navigate("/dashboard")
-        } 
-        catch (e) {
-            console.error(e)
+
+            const data = await response.text()
+            console.log("Token recibido:", data);
+            localStorage.setItem("Ecommerce-token", data);
+            navigate("/");
+
+        } catch(error){
+            console.error(error);
         }
-            */
+
+
+       
     }
 
     return (
