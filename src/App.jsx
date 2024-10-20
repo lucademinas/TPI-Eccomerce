@@ -9,6 +9,8 @@ import Navbar from "./components/navbar/CommonNavbar";
 import DetailOrder from "./components/Pages/detailOrder/DetailOrder";
 import ClientView from "./components/clientView/ClientView";
 import SysAdminTable from "./components/sysAdminTable/SysAdminTable";
+import ProductDetail from "./components/productDetail/ProductDetail";
+import { CartContextProvider } from "./context/CartContext";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -32,24 +34,33 @@ const App = () => {
     {
       path: "/",
       element: (
-      
-          <Protected>
-            <GeneralView>
-            <Dashboard />
-            </GeneralView>
-          </Protected>
 
-       
+
+        <GeneralView>
+          <Dashboard />
+        </GeneralView>
+
+
+
       ),
     },
 
     {
-      path: "/detailorder",
+      path: "/detail-order",
       element: (
         <ClientView>
           <DetailOrder />
         </ClientView>
       ),
+    },
+
+    {
+      path: "/product-detail",
+      element: (
+        <GeneralView>
+          <ProductDetail />
+        </GeneralView>
+      )
     },
 
     {
@@ -70,9 +81,9 @@ const App = () => {
   ]);
 
   return (
-    <div>
+    <CartContextProvider>
       <RouterProvider router={router} />
-    </div>
+    </CartContextProvider>
   );
 };
 
