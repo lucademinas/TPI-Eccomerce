@@ -46,12 +46,22 @@ const App = () => {
     },
 
     {
-      path: "/detailorder",
+      path: "/detail-order",
       element: (
         <ClientView>
           <DetailOrder />
         </ClientView>
       ),
+    },
+
+
+    {
+      path: "/product-detail",
+      element: (
+        <GeneralView>
+          <ProductDetail />
+        </GeneralView>
+      )
     },
 
     {
@@ -71,7 +81,7 @@ const App = () => {
     },
 
     {
-      path:"/clientList",
+      path:"/client-list",
       element:(
      // <Protected>
         <ClientView>
@@ -86,9 +96,9 @@ const App = () => {
   ]);
 
   return (
-    <div>
+    <CartContextProvider>
       <RouterProvider router={router} />
-    </div>
+      </CartContextProvider>
   );
 };
 
