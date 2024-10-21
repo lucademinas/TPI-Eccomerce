@@ -10,7 +10,8 @@ import DetailOrder from "./components/Pages/detailOrder/DetailOrder";
 import ClientView from "./components/clientView/ClientView";
 import SysAdminTable from "./components/sysAdminTable/SysAdminTable";
 import ClientList from "./components/clientList/ClientList";
-
+import ProductDetail from "./components/productDetail/ProductDetail";
+import { CartContextProvider } from "./context/CartContext";
 const App = () => {
   const router = createBrowserRouter([
     {
