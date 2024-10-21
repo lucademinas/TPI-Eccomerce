@@ -1,0 +1,70 @@
+
+.contClientList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.clientAndButtons{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+}
+
+.client,.contHead{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    justify-items: center;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.headClientList{
+    color:gray;
+}
+
+.client p,.contHead p{
+    margin: 0;
+    
+}
+
+.client img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+.name-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.clientListButtons{
+    align-self: flex-start;
+    display: flex;
+    gap: 10px;
+}
+
+.clientListButtons button{
+width: 30px;
+height: 30px;
+background-color: transparent;
+border-radius: 7px;
+}
+
+.clientListButtons button:hover{
+    background-color: black;
+    border-color: white;
+    color: white;
+}

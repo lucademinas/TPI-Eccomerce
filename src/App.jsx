@@ -9,6 +9,7 @@ import Navbar from "./components/navbar/CommonNavbar";
 import DetailOrder from "./components/Pages/detailOrder/DetailOrder";
 import ClientView from "./components/clientView/ClientView";
 import SysAdminTable from "./components/sysAdminTable/SysAdminTable";
+import ClientList from "./components/clientList/ClientList";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -66,7 +67,21 @@ const App = () => {
     {
       path: "/sysadmin",
       element: <SysAdminTable />
+    },
+
+    {
+      path:"/clientList",
+      element:(
+     // <Protected>
+        <ClientView>
+          <ClientList>
+
+          </ClientList>
+        </ClientView>
+      //</Protected>
+      )
     }
+
   ]);
 
   return (
