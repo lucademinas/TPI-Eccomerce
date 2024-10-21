@@ -35,6 +35,10 @@ const Dashboard = () => {
       .catch((error) => console.error("Error fetching data", error));
   }, []);
 
+  const handleProductClick = (product) => {
+    navigate("/product-detail", {state: {product}})
+  }
+
   return (
     <Container fluid className="dashboard-container">
       <Row className="align-items-start justify-content-center">
@@ -111,7 +115,7 @@ const Dashboard = () => {
           <Row>
             {products.map((product) => (
               <Col xs={12} md={4} className="mb-4" key={product.id}>
-                <Card className="product-card">
+                <Card className="product-card" onClick={() => handleProductClick(product)}>
                   <Card.Img
                     variant="top"
                     src={product.imageUrl}
