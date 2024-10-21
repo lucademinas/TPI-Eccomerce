@@ -63,7 +63,7 @@ return (
     <div className="client">
         <div className="name-img">
             <img src="https://img.freepik.com/foto-gratis/cierrese-encima-retrato-cara-joven-hombre-barbudo_171337-2887.jpg" alt="" />
-            <p>Fernando Koss</p>
+            <p>Fernando Kossgdfgasddfg</p>
         </div>
         <p>
             32423423423
@@ -82,7 +82,7 @@ return (
     <div className="client">
         <div className="name-img">
             <img src="https://img.freepik.com/foto-gratis/cierrese-encima-retrato-cara-joven-hombre-barbudo_171337-2887.jpg" alt="" />
-            <p>Fernando Koss</p>
+            <p>Fer</p>
         </div>
         <p>
             32423423423
