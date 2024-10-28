@@ -12,6 +12,9 @@ import SysAdminTable from "./components/sysAdminTable/SysAdminTable";
 import ClientList from "./components/clientList/ClientList";
 import ProductDetail from "./components/productDetail/ProductDetail";
 import { CartContextProvider } from "./context/CartContext";
+import AdminDashboard from "./components/adminDashboard/AdminDashboard";
+import AdminNavbar from "./components/adminNavbar/AdminNavbar";
+import AdminView from "./components/adminView/AdminView";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -34,14 +37,11 @@ const App = () => {
     {
       path: "/",
       element: (
-      
-          <Protected>
-            <GeneralView>
+        <Protected>
+          <GeneralView>
             <Dashboard />
-            </GeneralView>
-          </Protected>
-
-       
+          </GeneralView>
+        </Protected>
       ),
     },
 
@@ -54,14 +54,13 @@ const App = () => {
       ),
     },
 
-
     {
       path: "/product-detail",
       element: (
         <GeneralView>
           <ProductDetail />
         </GeneralView>
-      )
+      ),
     },
 
     {
@@ -69,36 +68,38 @@ const App = () => {
       element: <PageNotFound />,
     },
 
-
-
-
-
-
-
     {
-      path: "/sysadmin",
-      element: <SysAdminTable />
+      path: "/admin-dashboard",
+      element:(
+        <AdminView>
+          <AdminDashboard />
+        </AdminView>
+          
+        
+      ) 
     },
 
     {
-      path:"/client-list",
-      element:(
-     // <Protected>
+      path: "/sysadmin",
+      element: <SysAdminTable />,
+    },
+
+    {
+      path: "/client-list",
+      element: (
+        // <Protected>
         <ClientView>
-          <ClientList>
-
-          </ClientList>
+          <ClientList></ClientList>
         </ClientView>
-      //</Protected>
-      )
-    }
-
+        //</Protected>
+      ),
+    },
   ]);
 
   return (
     <CartContextProvider>
       <RouterProvider router={router} />
-      </CartContextProvider>
+    </CartContextProvider>
   );
 };
 
