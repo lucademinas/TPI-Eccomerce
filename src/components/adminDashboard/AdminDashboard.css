@@ -1,0 +1,53 @@
+.admin-dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard-summary {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .summary-item {
+    text-align: center;
+  }
+  
+  .sales-chart {
+    margin-bottom: 20px;
+  }
+  
+  .chart-controls button {
+    margin-right: 5px;
+  }
+  
+  .best-sellers {
+    margin-bottom: 20px;
+  }
+  
+  .best-seller-item {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .recent-purchases table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .recent-purchases th, .recent-purchases td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .pagination {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+  }

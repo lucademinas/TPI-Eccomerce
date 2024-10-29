@@ -1,15 +1,15 @@
 import React from 'react'
-import Navbar from '../navbar/CommonNavbar'
+import AdminNavbar from '../adminNavbar/AdminNavbar'
 import Footer from '../footer/Footer'
 
-const GeneralView = ({ children }) => {
+const AdminView = ({ children }) => {
   return (
     <div>
-      <Navbar />
+      <AdminNavbar />
         <main>{children}</main>
       <Footer/>
     </div>
   )
 }
 
-export default GeneralView
+export default AdminView;
