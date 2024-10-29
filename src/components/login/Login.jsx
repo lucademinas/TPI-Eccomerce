@@ -3,8 +3,9 @@ import { Form, Row, Button, Col, Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "../../img/Logo-Diego.jpg";
 import './Login.css'
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../api";
+import { jwtDecode } from "jwt-decode";
 
 
 
@@ -76,7 +77,16 @@ const Login = () => {
             const data = await response.text()
             console.log("Token recibido:", data);
             localStorage.setItem("Ecommerce-token", data);
-            navigate("/");
+
+            const decoded = jwtDecode(data)
+            const userRole = decoded.UserRol;
+            if(userRole === "Sysadmin") {
+                navigate("/sysadmin");
+            } else{
+                navigate("/");
+            }
+            
+        
 
         } catch(error){
             console.error(error);
