@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Button, Container, Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from "../../img/Logo-Diego.jpg";
+import logo from "../../../img/Logo-Diego.jpg";
 import { FaShoppingCart } from 'react-icons/fa'; // Importando el icono del carrito
 
 const ClientNavbar = () => {

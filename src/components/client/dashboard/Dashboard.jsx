@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import './Dashboard.css'; // Incluye el archivo de estilo si es necesario.
 import { useNavigate } from 'react-router-dom';
-import { API_BASE_URL } from '../../api';
+import { API_BASE_URL } from '../../../api';
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
