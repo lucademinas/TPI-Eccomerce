@@ -8,7 +8,7 @@ import GeneralView from "./components/generalView/GeneralView";
 
 import DetailOrder from "./components/detailOrder/DetailOrder";
 import ClientView from "./components/client/clientView/ClientView";
-import SysAdminTable from "./components/sysAdminTable/SysAdminTable";
+import SysAdminTable from "./components/sysAdmin/SysAdminTable";
 import ClientList from "./components/admin/clientList/ClientList";
 import ProductDetail from "./components/productDetail/ProductDetail";
 import { CartContextProvider } from "./context/CartContext";
@@ -36,11 +36,11 @@ const App = () => {
     {
       path: "/",
       element: (
-        <Protected>
-          <GeneralView>
+
+          <ClientView>
             <Dashboard />
-          </GeneralView>
-        </Protected>
+          </ClientView>
+   
       ),
     },
 
@@ -56,9 +56,9 @@ const App = () => {
     {
       path: "/product-detail",
       element: (
-        <GeneralView>
+        <ClientView>
           <ProductDetail />
-        </GeneralView>
+        </ClientView>
       ),
     },
 
@@ -86,11 +86,9 @@ const App = () => {
     {
       path: "/client-list",
       element: (
-        // <Protected>
         <ClientView>
           <ClientList></ClientList>
         </ClientView>
-        //</Protected>
       ),
     },
   ]);
