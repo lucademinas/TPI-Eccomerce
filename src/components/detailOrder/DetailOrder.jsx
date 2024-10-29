@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Button, Container, Row, Col, Card, Table, Form } from "react-bootstrap";
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 
 const DetailOrder = () => {
     const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useContext(CartContext); // Obtén los productos del carrito

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "./clientList.css"
-import { API_BASE_URL } from "../../api"
+import { API_BASE_URL } from "../../../api"
 
 const ClientList=()=>{
 

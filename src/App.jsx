@@ -1,20 +1,19 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
-import Dashboard from "./components/dashboard/Dashboard";
+import Dashboard from "./components/client/dashboard/Dashboard";
 import Protected from "./components/protected/Protected";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 import GeneralView from "./components/generalView/GeneralView";
-import Navbar from "./components/navbar/CommonNavbar";
-import DetailOrder from "./components/Pages/detailOrder/DetailOrder";
-import ClientView from "./components/clientView/ClientView";
+
+import DetailOrder from "./components/detailOrder/DetailOrder";
+import ClientView from "./components/client/clientView/ClientView";
 import SysAdminTable from "./components/sysAdminTable/SysAdminTable";
-import ClientList from "./components/clientList/ClientList";
+import ClientList from "./components/admin/clientList/ClientList";
 import ProductDetail from "./components/productDetail/ProductDetail";
 import { CartContextProvider } from "./context/CartContext";
-import AdminDashboard from "./components/adminDashboard/AdminDashboard";
-import AdminNavbar from "./components/adminNavbar/AdminNavbar";
-import AdminView from "./components/adminView/AdminView";
+import AdminDashboard from "./components/admin/adminDashboard/AdminDashboard";
+import AdminView from "./components/admin/adminView/AdminView";
 const App = () => {
   const router = createBrowserRouter([
     {
