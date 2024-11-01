@@ -1,4 +1,4 @@
-import logo from "../../img/Logo-Diego.jpg";
+import logo from "../../assets/Logo-Diego.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Button, Col, Container } from "react-bootstrap";
 import './NewUser.css'
@@ -35,7 +35,7 @@ const NewUser = () => {
     }
 
     const handleNavigateClick = () => {
-        navigate("/");
+        navigate("/login");
     }
 
     const handleSubmitUser = async (e) => {

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Navbar, Nav, Container, Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from "../../../img/Logo-Diego.jpg";
+import logo from "../../../assets/Logo-Diego.jpg";
 const AdminNavbar = () => {
   return (
     <Navbar bg="light" variant="light" style={{ borderBottom: '2px solid #504f4f' }}>

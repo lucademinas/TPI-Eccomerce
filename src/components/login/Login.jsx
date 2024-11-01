@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import { Form, Row, Button, Col, Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from "../../img/Logo-Diego.jpg";
+import logo from "../../assets/Logo-Diego.jpg";
 import './Login.css'
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../api";
