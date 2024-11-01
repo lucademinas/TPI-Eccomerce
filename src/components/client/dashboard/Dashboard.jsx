@@ -131,22 +131,6 @@ const Dashboard = () => {
             ))}
           </Row>
         </Col>
-        {/* <div>
-       <Row>
-         {products.map((product) => (
-           <Col xs={12} md={4} className="mb-4" key={product.id}>
-             <Card className="product-card">
-               <Card.Img variant="top" src={product.imageUrl} alt={product.description} className="product-img" />
-               <Card.Body className="text-center">
-                 <Card.Title>{product.description}</Card.Title>
-                <Card.Text>${product.price}</Card.Text>
-               </Card.Body>
-             </Card>
-           </Col>
-         ))}
-      </Row>
-     </div>
-*/}
       </Row>
     </Container>
     
