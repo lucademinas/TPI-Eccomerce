@@ -8,8 +8,9 @@ import { CartContext } from "../../context/CartContext";
 
 const ProductDetail = () => {
     const {addToCart} = useContext(CartContext);
+    
     const [selectedSize, setSelectedSize] = useState("Talle")
-
+    
     const { state } = useLocation();
     const { product } = state || {};
 
@@ -20,10 +21,14 @@ const ProductDetail = () => {
     }
 
     const handleAddClick = () => {
+        
         const productToAdd = {...product, size: selectedSize};
+       // if(!cart.include(productToAdd)){
         addToCart(productToAdd);
         alert("Producto añadido correctamente")
         navigate("/detail-order");
+    // }
+    
 
     }
 

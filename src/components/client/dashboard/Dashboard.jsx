@@ -16,7 +16,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/Product`, {
+    fetch(`${API_BASE_URL}/Product/GetAllProducts`, {
       headers: {
         accept: "application/json",
         "Authorization": `Bearer ${localStorage.getItem("Ecommerce-token")}`
@@ -37,12 +37,38 @@ const Dashboard = () => {
 
   const handleProductClick = (product) => {
     navigate("/product-detail", {state: {product}})
+    console.log("sadasdasd")
   }
 
+  
+
   return (
-    <Container fluid className="dashboard-container">
+    <div >
+    <Row>
+      {products.map((product) => (
+        <Col xs={12} md={4} className="mb-4" key={product.id}>
+          <Card className="product-card" onClick={()=>handleProductClick(product)}>
+            <Card.Img variant="top" src={product.imageUrl} alt={product.description} className="product-img" />
+            <Card.Body className="text-center">
+              <Card.Title>{product.description}</Card.Title>
+             <Card.Text>${product.price}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      ))}
+   </Row>
+  </div>
+  );
+};
+
+export default Dashboard;
+
+
+
+/*
+<Container fluid className="dashboard-container">
       <Row className="align-items-start justify-content-center">
-        {/* Filtros */}
+        {/* Filtros }
         <Col xs={12} md={3} className="filters-section">
           <div className="filters-container p-4 mb-4">
             <h5 className="text-center">Filtrar</h5>
@@ -103,7 +129,7 @@ const Dashboard = () => {
           </div>
         </Col>
 
-        {/* Productos */}
+        {/* Productos }
         <Col xs={12} md={9}>
           <Row className="mb-3 justify-content-end">
             <Col xs={12} md={6} className="d-flex justify-content-between">
@@ -146,11 +172,9 @@ const Dashboard = () => {
          ))}
       </Row>
      </div>
-*/}
+}
       </Row>
     </Container>
     
-  );
-};
 
-export default Dashboard;
+*/
