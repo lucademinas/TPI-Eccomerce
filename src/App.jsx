@@ -14,6 +14,10 @@ import ProductDetail from "./components/productDetail/ProductDetail";
 import { CartContextProvider } from "./context/CartContext";
 import AdminDashboard from "./components/admin/adminDashboard/AdminDashboard";
 import AdminView from "./components/admin/adminView/AdminView";
+import ProductForm from "./components/admin/productForm/ProductForm";
+import ProductList from "./components/admin/productList/ProductList";
+import RecentPurchases from "./components/admin/recentPurchases/RecentPurchases";
+import { GrOrderedList } from "react-icons/gr";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -61,6 +65,30 @@ const App = () => {
         </ClientView>
       ),
     },
+    {
+      path: "/product-form",
+      element: (
+        <AdminView>
+          <ProductForm />
+        </AdminView>
+      ),
+    },
+    {
+      path: "/product-list",
+      element: (
+        <AdminView>
+          <ProductList />
+        </AdminView>
+      ),
+    },
+    {
+      path: "/product-list",
+      element: (
+        <AdminView>
+          <ProductList />
+        </AdminView>
+      ),
+    },
 
     {
       path: "*",
@@ -72,6 +100,26 @@ const App = () => {
       element:(
         <AdminView>
           <AdminDashboard />
+        </AdminView>
+          
+        
+      ) 
+    },
+    { 
+      path: "/order-list",
+      element:(
+        <AdminView>
+          <RecentPurchases/>
+        </AdminView>
+          
+        
+      ) 
+    }, 
+    { 
+      path: "/client-list",
+      element:(
+        <AdminView>
+          <ClientList/>
         </AdminView>
           
         
