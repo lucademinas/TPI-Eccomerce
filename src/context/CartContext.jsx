@@ -23,7 +23,7 @@ export const CartContextProvider = ({ children }) => {
     const decreaseQuantity = (productId) => {
         setCart((prevCart) => 
             prevCart.map((product) => product.id === productId
-        ? {...product, quantity: product.quantity - 1} : product))
+        ? {...product, quantity: product.quantity - 1 < 1 ? product.quantity = 1 : product.quantity - 1} : product))
     }
 
 
