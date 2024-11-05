@@ -1,6 +1,6 @@
 import React from 'react'
-import AdminNavbar from '../adminNavbar/AdminNavbar'
-import Footer from '../../footer/Footer'
+import AdminNavbar from '../adminNavbar/AdminNavbar';
+import Footer from '../../shared/footer/Footer'
 
 const AdminView = ({ children }) => {
   return (

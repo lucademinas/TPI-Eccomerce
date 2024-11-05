@@ -4,7 +4,7 @@ import { Container, Table, Row, Col, Badge, Button, Form } from "react-bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaEdit, FaTrash, FaUserCircle } from "react-icons/fa";
 import { fetchUsers, deleteUserService, updateUserService } from "../../services/userService";
-import CommonNavbar from "../navbar/CommonNavbar";
+import CommonNavbar from "../shared/navbar/CommonNavbar";
 
 const SysAdminTable = () => {
     const [users, setUsers] = useState([])

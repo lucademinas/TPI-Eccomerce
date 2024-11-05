@@ -3,7 +3,7 @@ import { Button, Card, Col, Container, Form, Row, } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaUserCircle, FaStar } from "react-icons/fa";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../../context/CartContext";
 
 
 const ProductDetail = () => {
