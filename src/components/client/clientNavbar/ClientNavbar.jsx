@@ -28,6 +28,9 @@ const ClientNavbar = () => {
 
   const navigate = useNavigate();
  
+  const handleCart=()=>{
+    navigate("/detail-order");
+  }
 
   return (
     <Navbar bg="light" variant="light" style={{ borderBottom: '2px solid #504f4f' }}>
@@ -43,7 +46,7 @@ const ClientNavbar = () => {
         </Navbar.Brand>
         <Nav className="ml-auto">
           {/* Icono de carrito */}
-          <Button variant="outline-secondary" className="me-2">
+          <Button variant="outline-secondary" className="me-2" onClick={handleCart}>
             <FaShoppingCart />
           </Button>
           {/* Dropdown para el usuario */}
