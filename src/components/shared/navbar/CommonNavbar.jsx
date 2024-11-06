@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from "../../assets/Logo-Diego.jpg";
+import logo from "../../../assets/Logo-Diego.jpg";
 import { useNavigate } from 'react-router-dom';
 
 const CommonNavbar = () => {

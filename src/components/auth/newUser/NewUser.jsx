@@ -1,10 +1,10 @@
-import logo from "../../assets/Logo-Diego.jpg";
+import logo from "../../../assets/Logo-Diego.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Button, Col, Container } from "react-bootstrap";
 import './NewUser.css'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { API_BASE_URL } from "../../api";
+import { API_BASE_URL } from "../../../api";
 
 const NewUser = () => {
     const [userName, setUserName] = useState("");
