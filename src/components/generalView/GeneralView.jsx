@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../navbar/CommonNavbar'
-import Footer from '../footer/Footer'
+import Navbar from '../shared/navbar/CommonNavbar'
+import Footer from '../shared/footer/Footer'
 
 const GeneralView = ({ children }) => {
   return (
