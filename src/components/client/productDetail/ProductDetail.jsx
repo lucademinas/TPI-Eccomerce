@@ -7,7 +7,7 @@ import { CartContext } from "../../../context/CartContext";
 
 
 const ProductDetail = () => {
-    const {addToCart} = useContext(CartContext);
+    const {addToCart,cart} = useContext(CartContext);
     
     const [selectedSize, setSelectedSize] = useState("Talle")
     
@@ -23,11 +23,14 @@ const ProductDetail = () => {
     const handleAddClick = () => {
         
         const productToAdd = {...product, size: selectedSize};
-       // if(!cart.include(productToAdd)){
+        
+
+        if(!cart.map(x=>x.Id).includes(productToAdd.Id)){
+        
         addToCart(productToAdd);
         alert("Producto añadido correctamente")
         navigate("/detail-order");
-    // }
+     }
     
 
     }
