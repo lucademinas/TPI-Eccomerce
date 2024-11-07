@@ -16,13 +16,13 @@ export const fetchUsers = async () => {
         }
 
         const data = await response.json();
-        return data
+        return data;
 
     } catch (error) {
-        console.error("Error fetching users: ", error)
+        console.error("Error fetching users: ", error);
+        return []; // Devuelve un array vacío en caso de error
     }
 }
-
 export const deleteUserService = async (id) => {
     try {
         const token = localStorage.getItem("Ecommerce-token");
