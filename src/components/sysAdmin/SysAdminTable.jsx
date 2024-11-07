@@ -13,11 +13,16 @@ const SysAdminTable = () => {
 
     useEffect(() => {
         const getUsers = async () => {
+          try {
             const data = await fetchUsers();
-            setUsers(data)
+            setUsers(data || []); // Si data es null o undefined, usa un array vacío
+          } catch (error) {
+            console.error("Error fetching users:", error);
+            setUsers([]); // En caso de error, establece users como un array vacío
+          }
         }
         getUsers();
-    }, [])
+      }, [])
 
     const deleteUser = async (id) => {
         const response = await deleteUserService(id)
@@ -49,7 +54,7 @@ const SysAdminTable = () => {
     }
 
 
-    const userFiltered = users.filter((user => user.userRol !== "Sysadmin")) //Para que no se vea a sí mismo
+    const userFiltered = users ? users.filter((user) => user.userRol !== "Sysadmin") : [];
 
     return (
         <Container>
@@ -75,7 +80,7 @@ const SysAdminTable = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {userFiltered.map((user =>
+                        {userFiltered && userFiltered.map((user) => (
                                 <tr key={user.id}>
                                     <td>
                                         {editId === user.id ? (
@@ -83,7 +88,6 @@ const SysAdminTable = () => {
                                                 type="text"
                                                 value={updateName}
                                                 onChange={(e) => setUpdateName(e.target.value)}
-
                                             />
                                         ) : (
                                             <div className="d-flex align-items-center">
@@ -91,7 +95,6 @@ const SysAdminTable = () => {
                                                 {user.name}
                                             </div>
                                         )}
-
                                     </td>
                                     <td>#{user.id}</td>
                                     <td>{user.startDate.split("T")[0]}</td>
@@ -121,7 +124,7 @@ const SysAdminTable = () => {
                 </Col>
             </Row>
         </Container>
-    )
-}
+    );
+};
 
 export default SysAdminTable;
