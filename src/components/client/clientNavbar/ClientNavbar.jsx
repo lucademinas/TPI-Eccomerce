@@ -59,7 +59,7 @@ const ClientNavbar = () => {
               <Dropdown.Menu>
                 <Dropdown.Item onClick={() => navigate("/")}>Inicio</Dropdown.Item>
                 <Dropdown.Item onClick={() => navigate("/detail-order")}>Carrito</Dropdown.Item>
-                <Dropdown.Item >Historial de pedidos</Dropdown.Item>
+                <Dropdown.Item onClick={() => navigate("/order-list")} >Historial de pedidos</Dropdown.Item>
                 <Dropdown.Item onClick={handleSignOut}>Cerrar Sesion</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
