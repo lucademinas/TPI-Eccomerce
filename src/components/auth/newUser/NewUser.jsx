@@ -50,7 +50,9 @@ const NewUser = () => {
         console.log("Enviando usuario: ", newUser);
 
         try {
-            const response = await fetch(`${API_BASE_URL}/User`, {
+            const endpoint = userRol === "Client"? `${API_BASE_URL}/Client/CreateClient` : `${API_BASE_URL}/Admin/CreateAdmin`
+
+            const response = await fetch(endpoint, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"

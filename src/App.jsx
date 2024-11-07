@@ -11,9 +11,11 @@ import SysAdminTable from "./components/sysAdmin/SysAdminTable";
 import ClientList from "./components/admin/clientList/ClientList";
 import ProductDetail from "./components/client/productDetail/ProductDetail";
 import { CartContextProvider } from "./context/CartContext";
+import { AuthContextProvider } from "./hooks/AuthContext";
 import AdminDashboard from "./components/admin/adminDashboard/AdminDashboard";
 import AdminView from "./components/admin/adminView/AdminView";
 import ProductList from "./components/admin/productList/ProductList";
+import OrderList from "./components/client/orderList/OrderList";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -37,10 +39,10 @@ const App = () => {
       path: "/",
       element: (
 
-          <ClientView>
-            <Dashboard />
-          </ClientView>
-   
+        <ClientView>
+          <Dashboard />
+        </ClientView>
+
       ),
     },
 
@@ -69,27 +71,27 @@ const App = () => {
 
     {
       path: "/admin-dashboard",
-      element:(
+      element: (
         <AdminView>
           <AdminDashboard />
         </AdminView>
-      ) 
+      )
     },
     {
       path: "/product-form",
-      element:(
+      element: (
         <AdminView>
-          <ProductForm/>
+          <ProductForm />
         </AdminView>
-      ) 
+      )
     },
     {
       path: "/product-list",
-      element:(
+      element: (
         <AdminView>
-          <ProductList/>
+          <ProductList />
         </AdminView>
-      ) 
+      )
     },
 
     {
@@ -105,12 +107,23 @@ const App = () => {
         </ClientView>
       ),
     },
+    {
+      path: "/order-list",
+      element: (
+        <ClientView>
+          <OrderList />
+        </ClientView>
+      )
+    }
   ]);
 
   return (
-    <CartContextProvider>
-      <RouterProvider router={router} />
-    </CartContextProvider>
+    <AuthContextProvider>
+      <CartContextProvider>
+        <RouterProvider router={router} />
+      </CartContextProvider>
+    </AuthContextProvider>
+
   );
 };
 
