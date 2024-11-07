@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../api";
 export const fetchUsers = async () => {
     try {
         const token = localStorage.getItem("Ecommerce-token");
-        const response = await fetch(`${API_BASE_URL}/User`, {
+        const response = await fetch(`${API_BASE_URL}/Sys/GetAllUsers`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -26,7 +26,7 @@ export const fetchUsers = async () => {
 export const deleteUserService = async (id) => {
     try {
         const token = localStorage.getItem("Ecommerce-token");
-        const response = await fetch(`${API_BASE_URL}/User/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/Sys/DeleteUser/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -46,7 +46,7 @@ export const deleteUserService = async (id) => {
 export const updateUserService = async (id, updateName) => {
     try {
         const token = localStorage.getItem("Ecommerce-token")
-        const response = await fetch(`${API_BASE_URL}/User/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/Sys/UpdateUser/${id}`, {
             method: "PUT",
             headers: {
                 "Authorization": `Bearer ${token}`,
