@@ -1,8 +1,7 @@
-// src/AdminDashboard.js
+
 import React from 'react';
 import DashboardSummary from '../dashboardSummary/DarshboardSummary';
 import SalesChart from '../salesChart/SalesChart';
-import BestSellers from '../bestSellers/BestSellers';
 import RecentPurchases from '../recentPurchases/RecentPurchases';
 
 const AdminDashboard = () => {
@@ -13,7 +12,6 @@ const AdminDashboard = () => {
       
       <DashboardSummary />
       <SalesChart />
-      <BestSellers />
       <RecentPurchases />
     </div>
   );

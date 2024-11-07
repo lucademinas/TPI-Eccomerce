@@ -1,45 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../../../api';
 
-const RecentPurchases = () => (
-  <div className="card p-4 my-4">
-    <h5>Compras Recientes</h5>
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>ID Compra</th>
-          <th>Fecha</th>
-          <th>Comprador</th>
-          <th>Estado</th>
-          <th>Precio</th>
-        </tr>
-      </thead>
-      <tbody>
-        {[
-          { product: 'Lorem Ipsum', id: '#52458', date: '5 Sep 2024', buyer: 'Juan Luis', status: 'Enviado', price: '$200.00' },
-          { product: 'Lorem Ipsum', id: '#52457', date: '7 Sep 2024', buyer: 'Ramiro', status: 'Cancelado', price: '$300.00' },
-          { product: 'Lorem Ipsum', id: '#52456', date: '10 Sep 2024', buyer: 'Valentina', status: 'Enviado', price: '$250.00' },
-          { product: 'Lorem Ipsum', id: '#52455', date: '24 Ago 2024', buyer: 'Lucas', status: 'Enviado', price: '$180.00' },
-          { product: 'Lorem Ipsum', id: '#52454', date: '24 Ago 2024', buyer: 'Roberto', status: 'Enviado', price: '$300.00' },
-          { product: 'Lorem Ipsum', id: '#52453', date: '24 Ago 2024', buyer: 'Maria', status: 'Enviado', price: '$220.00' },
-        ].map((purchase, index) => (
-          <tr key={index}>
-            <td>{purchase.product}</td>
-            <td>{purchase.id}</td>
-            <td>{purchase.date}</td>
-            <td>{purchase.buyer}</td>
-            <td>{purchase.status}</td>
-            <td>{purchase.price}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    <div className="pagination d-flex justify-content-center">
-      {['1', '2', '3', '4', '...', '10', 'Siguiente'].map((label, index) => (
-        <button key={index} className="btn btn-outline-secondary mx-1">{label}</button>
+const RecentPurchases = () => {
+  const [recentPurchases, setRecentPurchases] = useState([]);
+  const [loading, setLoading] = useState (true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchRecentPurchases = async () => {
+      try {
+        const token = localStorage.getItem("Ecommerce-token");
+        const response = await fetch(`${API_BASE_URL}/Dashboard/summary`, {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Error fetching recent purchases");
+        }
+
+        const data = await response.json();
+        setRecentPurchases(data.recentOrders || []);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching recent purchases:", error);
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchRecentPurchases();
+  }, []);
+
+  if (loading) return <div>Cargando compras recientes...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="card p-4 my-4">
+      <h5>Compras Recientes</h5>
+      {recentPurchases.map((purchase, index) => (
+        <div 
+          key={index} 
+          className="d-flex justify-content-between border-bottom py-2"
+        >
+          <span>{purchase.clientName}</span>
+          <span>{new Date(purchase.orderDate).toLocaleDateString()}</span>
+          <span>${purchase.total.toFixed(2)}</span>
+        </div>
       ))}
     </div>
-  </div>
-);
+  );
+};
 
 export default RecentPurchases;
