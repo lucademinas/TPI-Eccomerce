@@ -16,10 +16,13 @@ const ProductDetail = () => {
     const handleAddClick = () => {
         const productToAdd = {...product};
         
-        if(!cart.map(x=>x.Id).includes(productToAdd.Id)){
+        if(!cart.map(x=>`${x.id}-${x.size}`).includes(`${productToAdd.id}-${productToAdd.size}`)){
             addToCart(productToAdd);
             alert("Producto añadido correctamente")
             navigate("/detail-order");
+        }
+        else{
+            console.log(productToAdd)
         }
     }
 
