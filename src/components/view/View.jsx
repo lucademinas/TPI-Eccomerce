@@ -6,12 +6,16 @@ import { Navigate } from "react-router-dom"
 
 const View = ({children})=>{
 
-    const [decodedToken,setDecodedToken]=useState("a")
+    const [decodedToken,setDecodedToken]=useState("")
 
     useEffect(()=>{
+
         const token = localStorage.getItem('Ecommerce-token');
+        
         setDecodedToken(jwtDecode(token))
     },[])
+
+    
     
     switch(decodedToken.UserRol){
         case "Admin":return <AdminView>{children}</AdminView>
