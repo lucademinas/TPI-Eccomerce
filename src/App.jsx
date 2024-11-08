@@ -16,6 +16,7 @@ import AdminDashboard from "./components/admin/adminDashboard/AdminDashboard";
 import AdminView from "./components/admin/adminView/AdminView";
 import ProductList from "./components/admin/productList/ProductList";
 import OrderList from "./components/client/orderList/OrderList";
+import View from "./components/view/View";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -38,10 +39,10 @@ const App = () => {
     {
       path: "/",
       element: (
-
-        <ClientView>
-          <Dashboard />
-        </ClientView>
+        
+         <View>
+           <Dashboard />
+         </View>
 
       ),
     },
@@ -49,18 +50,18 @@ const App = () => {
     {
       path: "/detail-order",
       element: (
-        <ClientView>
+        <View>
           <DetailOrder />
-        </ClientView>
+        </View>
       ),
     },
 
     {
       path: "/product-detail",
       element: (
-        <ClientView>
+        <View>
           <ProductDetail />
-        </ClientView>
+        </View>
       ),
     },
 
@@ -102,17 +103,17 @@ const App = () => {
     {
       path: "/client-list",
       element: (
-        <ClientView>
+        <View>
           <ClientList></ClientList>
-        </ClientView>
+        </View>
       ),
     },
     {
       path: "/order-list",
       element: (
-        <ClientView>
+        <View>
           <OrderList />
-        </ClientView>
+        </View>
       )
     }
   ]);
