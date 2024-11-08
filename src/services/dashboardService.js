@@ -45,27 +45,6 @@ export const fetchSalesData = async () => {
     }
 };
 
-export const fetchBestSellers = async () => {
-    try {
-        const token = localStorage.getItem("Ecommerce-token");
-        const response = await fetch(`${API_BASE_URL}/Dashboard/BestSellers`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "application/json"
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error("Error fetching best sellers");
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("Error fetching best sellers:", error);
-        return null;
-    }
-};
 
 export const fetchRecentPurchases = async () => {
     try {
