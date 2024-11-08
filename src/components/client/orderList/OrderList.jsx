@@ -14,7 +14,7 @@ const OrderList = () => {
         const fetchOrders = async () => {
             console.log(clientId)
             if (!clientId) return; // Asegurarse de que clientId esté disponible antes de continuar
-
+   
             try {
                 const token = localStorage.getItem('Ecommerce-token');
                 const response = await fetch(`${API_BASE_URL}/Order/GetAllByClient/${clientId}`, {

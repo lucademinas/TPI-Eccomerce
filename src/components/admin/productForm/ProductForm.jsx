@@ -12,7 +12,7 @@ const ProductForm = () => {
 
   const [nameProduct, setNameProduct] = useState("")
   const [description, setDescription] = useState("")
-  const [category, setCategory] = useState("")
+  const [size, setSize] = useState("")
   const [brand, setBrand] = useState("")
   const [price, setPrice] = useState(0)
   const [stock, setStock] = useState(0)
@@ -21,7 +21,7 @@ const ProductForm = () => {
 
   const refNameProduct=useRef(null)
   const refDescription=useRef(null)
-  const refCategory=useRef(null)
+  const refSize=useRef(null)
   const refBrand=useRef(null)
   const refPrice=useRef(null)
   const refStock=useRef(null)
@@ -36,8 +36,8 @@ const ProductForm = () => {
     setDescription(e.target.value)
   }
 
-  const handleCategory = (e) => {
-    setCategory(e.target.value)
+  const handleSize = (e) => {
+    setSize(e.target.value)
   }
 
   const handleBrand = (e) => {
@@ -104,11 +104,11 @@ const ProductForm = () => {
     }
     else refDescription.current.style.backgroundColor="white"
 
-    if (category == "") {
-      refCategory.current.style.backgroundColor="red"
+    if (size == "") {
+      refSize.current.style.backgroundColor="red"
       error=true
     }
-    else refCategory.current.style.backgroundColor="white"
+    else refSize.current.style.backgroundColor="white"
 
     if (brand == "") {
       refBrand.current.style.backgroundColor="red"
@@ -147,10 +147,10 @@ const ProductForm = () => {
           "Content-type": "application/json"
         },
         body: JSON.stringify({
-          "description": description,
+          "description": nameProduct,
           "price": price,
           "imageUrl": url,
-          "size": "string",
+          "size": size,
           "stock": stock,
           "brand": brand
 
@@ -173,7 +173,7 @@ const ProductForm = () => {
   const handleEliminate = () => {
     setNameProduct("")
     setDescription("")
-    setCategory("")
+    setSize("")
     setBrand("")
     setPrice(0)
     setStock(0)
@@ -199,9 +199,9 @@ const ProductForm = () => {
             <Form.Control as="textarea" placeholder="Lorem Ipsum" rows={3} value={description} onChange={handleDescription} ref={refDescription}/>
           </Form.Group>
 
-          <Form.Group controlId="category" className="mb-3">
-            <Form.Label>Categoría</Form.Label>
-            <Form.Control type="text" placeholder="Sneaker" value={category} onChange={handleCategory} ref={refCategory}/>
+          <Form.Group controlId="size" className="mb-3">
+            <Form.Label>Talle</Form.Label>
+            <Form.Control type="text" placeholder="Size" value={size} onChange={handleSize} ref={refSize}/>
           </Form.Group>
 
           <Form.Group controlId="brand" className="mb-3">

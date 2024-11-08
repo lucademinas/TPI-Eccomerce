@@ -14,6 +14,10 @@ const ProductDetail = () => {
     const navigate = useNavigate();
 
     const handleAddClick = () => {
+        if (!localStorage.getItem('Ecommerce-token')){
+            return navigate("/login");
+        }
+
         const productToAdd = {...product};
         
         if(!cart.map(x=>`${x.id}-${x.size}`).includes(`${productToAdd.id}-${productToAdd.size}`)){

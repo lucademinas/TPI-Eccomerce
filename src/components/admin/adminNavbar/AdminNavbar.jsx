@@ -9,14 +9,18 @@ const AdminNavbar = () => {
 
   const navigate=useNavigate()
 
+  const handlerAdminDashboard=()=>{
+    navigate("/admin-dashboard")
+  }
   const handlerDashboard=()=>{
     navigate("/")
   }
-  const handlerOrderList=()=>{
-    navigate("/order-list")
-  }
+
   const handlerClientList=()=>{
     navigate("/client-list")
+  }
+  const handlerProductList=()=>{
+    navigate("/product-list")
   }
   const logOut=()=>{
     localStorage.removeItem('Ecommerce-token')
@@ -27,13 +31,14 @@ const AdminNavbar = () => {
     <Navbar bg="light" variant="light" style={{ borderBottom: '2px solid #504f4f' }}>
       <Container>
         {/* Logo en el lado izquierdo */}
-        <Navbar.Brand href="#home">
+        <Navbar.Brand onClick={() => navigate("/admin-dashboard")}>
           <img
             src={logo}
             alt="logo"
             width="50"
             height="50"
             className="d-inline-block align-top"
+            onClick={handlerDashboard}
           />
         </Navbar.Brand>
         
@@ -51,8 +56,9 @@ const AdminNavbar = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item onClick={handlerDashboard}>DASHBOARD</Dropdown.Item>
-              <Dropdown.Item onClick={handlerOrderList}>LISTA DE PEDIDOS</Dropdown.Item>
+              <Dropdown.Item onClick={handlerDashboard}>CLIENT DASHBOARD</Dropdown.Item>
+              <Dropdown.Item onClick={handlerAdminDashboard}>ADMIN DASHBOARD</Dropdown.Item>
+              <Dropdown.Item onClick={handlerProductList}>LISTA DE PRODUCTOS</Dropdown.Item>
               <Dropdown.Item onClick={handlerClientList}>LISTA DE CLIENTES</Dropdown.Item>
               <Dropdown.Item onClick={logOut}>LOG OUT</Dropdown.Item>
             </Dropdown.Menu>
