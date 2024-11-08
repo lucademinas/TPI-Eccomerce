@@ -3,8 +3,27 @@ import React from 'react';
 import { Navbar, Nav, Container, Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "../../../assets/Logo-Diego.jpg";
+import { useNavigate } from 'react-router-dom';
+import Dashboard from '../../client/dashboard/Dashboard';
 const AdminNavbar = () => {
-  return (
+
+  const navigate=useNavigate()
+
+  const handlerDashboard=()=>{
+    navigate("/")
+  }
+  const handlerOrderList=()=>{
+    navigate("/order-list")
+  }
+  const handlerClientList=()=>{
+    navigate("/client-list")
+  }
+  const logOut=()=>{
+    localStorage.removeItem('Ecommerce-token')
+    navigate("/login")
+   
+  }
+    return (
     <Navbar bg="light" variant="light" style={{ borderBottom: '2px solid #504f4f' }}>
       <Container>
         {/* Logo en el lado izquierdo */}
@@ -32,10 +51,10 @@ const AdminNavbar = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#dashboard">DASHBOARD</Dropdown.Item>
-              <Dropdown.Item href="#orders">LISTA DE PEDIDOS</Dropdown.Item>
-              <Dropdown.Item href="#clients">LISTA DE CLIENTES</Dropdown.Item>
-              <Dropdown.Item href="#logout">LOG OUT</Dropdown.Item>
+              <Dropdown.Item onClick={handlerDashboard}>DASHBOARD</Dropdown.Item>
+              <Dropdown.Item onClick={handlerOrderList}>LISTA DE PEDIDOS</Dropdown.Item>
+              <Dropdown.Item onClick={handlerClientList}>LISTA DE CLIENTES</Dropdown.Item>
+              <Dropdown.Item onClick={logOut}>LOG OUT</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Nav>
