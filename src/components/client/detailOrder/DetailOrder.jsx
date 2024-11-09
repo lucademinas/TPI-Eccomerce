@@ -2,25 +2,43 @@ import React, { useContext } from "react";
 import { Button, Container, Row, Col, Card, Table, Form } from "react-bootstrap";
 import { CartContext } from "../../../context/CartContext";
 import { API_BASE_URL } from "../../../api";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const DetailOrder = () => {
-    const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useContext(CartContext); // Obtén los productos del carrito
+    const { cart, removeFromCart, increaseQuantity, decreaseQuantity,emptyCart } = useContext(CartContext); // Obtén los productos del carrito
 
     const total = cart.reduce((acu, product) => acu + product.price * product.quantity, 0);
-
+    const idClient = jwtDecode(localStorage.getItem("Ecommerce-token")).sub
+    console.log(idClient)
+    console.log(cart)
+    console.log(JSON.stringify(cart.map(x=>({productId:x.id,amount:x.quantity}))))
+    
     const handleRemoveFromCart = (id) => {
         removeFromCart(id); // Remover producto del carrito
     };
+    
+    const navigate =useNavigate()
 
-    const handleFinishedOrder = async (id) => {
+    
+    const handleFinishedOrder = async () => {
         try {
-            const res = await fetch(`${API_BASE_URL}/Order/FinishOrder/${id}`, {
-                method: "PUT",
+            const res = await fetch(`${API_BASE_URL}/Order/AddSaleOrder`, {
+                method: "POST",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("Ecommerce-token")}`,
                     "Content-type": "application/json"
                 },
-                body: JSON.stringify({ finished: true }) // Cambia la propiedad "finished" a true
+                body: JSON.stringify({
+                    "clientId": idClient,
+                    "orderDetails": cart.map(x=>({productId:x.id,amount:x.quantity}))
+                    /*[ 
+                      {
+                        "productId": 0,
+                        "amount": 0
+                      }
+                    ]*/
+                  }),
             });
 
             if (res.ok) {
@@ -29,8 +47,11 @@ const DetailOrder = () => {
             } else {
                 alert("Hubo un error al finalizar la orden.");
             }
+
+            emptyCart()
+            navigate("/")
         } catch (error) {
-            console.error("Error al finalizar la orden:", error);
+            console.log("Error al finalizar la orden:", error);
             alert("Ocurrió un error al intentar finalizar la orden.");
         }
     }    
@@ -146,7 +167,7 @@ const DetailOrder = () => {
                                     </Row>
                                 </Form.Group>
 
-                                <Button variant="dark" onClick={() => handleFinishedOrder(id)} className="w-100">Pagar</Button>
+                                <Button variant="dark" onClick={handleFinishedOrder} className="w-100">Pagar</Button>
                             </Form>
                         </Card.Body>
                     </Card>
