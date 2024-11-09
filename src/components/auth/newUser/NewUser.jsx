@@ -67,8 +67,8 @@ const NewUser = () => {
                 throw new Error("Error al registrar usuario: ", responseText);
             }
 
-            const data = JSON.parse(responseText);
-            console.log("Usuario registrado: ", data);
+            
+            console.log("Usuario registrado: ", newUser);
 
             setUserName("");
             setUserLastName("");
