@@ -1,175 +1,96 @@
-import { useEffect, useState } from "react"
-import "./clientList.css"
-import { API_BASE_URL } from "../../../api"
+import { useEffect, useState } from "react";
+import "./clientList.css";
+import { API_BASE_URL } from "../../../api"; // Asegúrate de que esta constante esté definida correctamente
+import user from "../../../assets/user.webp";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const ClientList=()=>{
+const ClientList = () => {
+    const [clients, setClients] = useState([]);
 
-const [clients,setClients]=useState([])
+    useEffect(() => {
+        const fetchClients = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}/client/GetAllClients`, {
+                    headers: {
+                        accept: "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("Ecommerce-token")}`
+                    }
+                });
 
-useEffect(()=>{
-    try{
-        fetch(`${API_BASE_URL}/api/User`,{
-            headers: {
-              accept: "application/json",
-              "Authorization": `Bearer ${localStorage.getItem("Ecommerce-token")}`
-            }})
-        .then((res)=>{
-            if(!res.ok)
-                throw new Error()
-            return res.json()
-        })
-        .then((data)=>{
-            setClients(data)
-        })
-        .catch((e)=>{
-            console.log(e)
-        })
-    }
-    catch(e){}
-}
+                if (!response.ok) {
+                    throw new Error("Error al obtener los clientes");
+                }
 
-,[])
+                const data = await response.json();
+                setClients(data);
+            } catch (error) {
+                console.error("Error fetching clients:", error);
+            }
+        };
 
-return (
-<div className="contClientList">
-<div className="clientAndButtons">
-    <div className="contHead">
-    <p className="headClientList">Cliente</p>
-    <p className="headClientList">Id Cliente</p>
-    <p className="headClientList">Fecha Registro</p>
-    <p className="headClientList">Direccion</p>
-    <p className="headClientList">Eliminar</p>
-    </div>
+        fetchClients();
+    }, []);
 
-    <div className="client">
-        <div className="name-img">
-            <img src="https://img.freepik.com/foto-gratis/cierrese-encima-retrato-cara-joven-hombre-barbudo_171337-2887.jpg" alt="" />
-            <p>Fernando Koss</p>
+    const handleDeleteClient = async (clientId) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/client/DeleteClient/${clientId}`, {
+                method: 'DELETE',
+                headers: {
+                    accept: "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("Ecommerce-token")}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al eliminar el cliente");
+            }
+
+            // Actualiza la lista de clientes después de eliminar
+            setClients(clients.filter(client => client.id !== clientId));
+        } catch (error) {
+            console.error("Error deleting client:", error);
+        }
+    };
+
+    return (
+        <div className="contClientList">
+            <div className="clientAndButtons">
+                <div className="contHead">
+                    <p className="headClientList">Cliente</p>
+                    <p className="headClientList">Id Cliente</p>
+                    <p className="headClientList">Fecha Registro</p>
+                    <p className="headClientList">Email</p>
+                    <p className="headClientList">Eliminar</p>
+                </div>
+
+                {clients.map((client) => (
+                    <div className="client" key={client.id}>
+                        <div className="name-img">
+                            <img src={user} alt="" />
+                            <p>{client.name}</p>
+                        </div>
+                        <p>{client.id}</p>
+                        <p>{new Date(client.registrationDate).toLocaleDateString()}</p>
+                        <p>{client.email}</p>
+                        <p>
+                            <FontAwesomeIcon 
+                                icon={faTrash} 
+                                onClick={() => handleDeleteClient(client.id)} 
+                                style={{ cursor: 'pointer', color: 'red' }} 
+                            />
+                        </p>
+                    </div>
+                ))}
+
+                <div className="clientListButtons">
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                </div>
+            </div>
         </div>
-        <p>
-            32423423423
-        </p>
-        <p>
-            28/09/2003
-        </p>
-        <p>
-            Zeballos 324234
-        </p>
-        <p>
-            X
-        </p>
-    </div>
+    );
+};
 
-    <div className="client">
-        <div className="name-img">
-            <img src="https://img.freepik.com/foto-gratis/cierrese-encima-retrato-cara-joven-hombre-barbudo_171337-2887.jpg" alt="" />
-            <p>Fernando Kossgdfgasddfg</p>
-        </div>
-        <p>
-            32423423423
-        </p>
-        <p>
-            28/09/2003
-        </p>
-        <p>
-            Zeballos 324234
-        </p>
-        <p>
-            X
-        </p>
-    </div>
-
-    <div className="client">
-        <div className="name-img">
-            <img src="https://img.freepik.com/foto-gratis/cierrese-encima-retrato-cara-joven-hombre-barbudo_171337-2887.jpg" alt="" />
-            <p>Fer</p>
-        </div>
-        <p>
-            32423423423
-        </p>
-        <p>
-            28/09/2003
-        </p>
-        <p>
-            Zeballos 324234
-        </p>
-        <p>
-            X
-        </p>
-    </div>
-
-    <div className="client">
-        <div className="name-img">
-            <img src="https://img.freepik.com/foto-gratis/cierrese-encima-retrato-cara-joven-hombre-barbudo_171337-2887.jpg" alt="" />
-            <p>Fernando Koss</p>
-        </div>
-        <p>
-            32423423423
-        </p>
-        <p>
-            28/09/2003
-        </p>
-        <p>
-            Zeballos 324234
-        </p>
-        <p>
-            X
-        </p>
-    </div>
-
-    <div className="client">
-        <div className="name-img">
-            <img src="https://img.freepik.com/foto-gratis/cierrese-encima-retrato-cara-joven-hombre-barbudo_171337-2887.jpg" alt="" />
-            <p>Fernando Koss</p>
-        </div>
-        <p>
-            32423423423
-        </p>
-        <p>
-            28/09/2003
-        </p>
-        <p>
-            Zeballos 324234
-        </p>
-        <p>
-            X
-        </p>
-    </div>
-
-    <div className="clientListButtons">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-    </div>
-    </div>
-
-</div>
-)
-
-/*
-clients.map((x)=><div className="client">
-<div className="name-img">
-    <img src={x.Img} alt="" />
-    <p>{x.Name}</p>
-</div>
-<p>
-    {x.Id}
-</p>
-<p>
-    {x.Birth}
-</p>
-<p>
-    {x.Address}
-</p>
-<p>
-    X
-</p>
-</div>)
-*/
-
-
-
-
-}
-
-export default ClientList
+export default ClientList;
