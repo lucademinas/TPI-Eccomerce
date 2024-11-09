@@ -76,6 +76,7 @@ const NewUser = () => {
             setUserPassword("");
             setUserRol("");
             navigate("/login")
+            alert("Usuario creado correctamente.")
 
         } catch(error){
             console.error(error);
