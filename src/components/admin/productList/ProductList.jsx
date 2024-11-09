@@ -2,18 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, Button, Badge, Pagination, Form } from 'react-bootstrap'; 
 import { API_BASE_URL } from '../../../api';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../hooks/AuthContext';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
 
+    const { user } = useAuth();
+    const adminId = user?.id;
+
     useEffect(() => {
         fetchProducts();
-    }, []);
+    }, [adminId]);
 
     const fetchProducts = async () => {
+        console.log(adminId)
+        if (!adminId) return; // Asegurarse de que clientId esté disponible antes de continuar
         try {
-            const response = await fetch(`${API_BASE_URL}/Product/GetAllProducts`, {
+            console.log(adminId)
+            const response = await fetch(`${API_BASE_URL}/Product/GetProductsByAdmin/${adminId}`, {
                 headers: {
                     accept: "application/json",
                     "Authorization": `Bearer ${localStorage.getItem("Ecommerce-token")}`
@@ -34,6 +41,7 @@ const ProductList = () => {
     const handleAddNewProduct = () => {
         navigate('/product-form');
     };
+
 
     return (
         <div className="p-4">
@@ -56,8 +64,8 @@ const ProductList = () => {
                                     Talle: {product.size}<br/>
                                     Stock: {product.stock}
                                 </Card.Text>
-                                <Button variant="primary" size="sm">Editar</Button>
-                                <Button variant="danger" size="sm" className="ms-2">Eliminar</Button>
+                                <Button variant="primary" size="sm" >Editar</Button>
+                                <Button variant="danger" size="sm" className="ms-2" >Eliminar</Button>
                             </Card.Body>
                         </Card>
                     </Col>

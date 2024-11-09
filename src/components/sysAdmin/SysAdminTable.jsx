@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../../api";
 import { Container, Table, Row, Col, Badge, Button, Form } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaEdit, FaTrash, FaUserCircle } from "react-icons/fa";
-import { fetchUsers, deleteUserService, updateUserService } from "../../services/userService";
+import { fetchUsers, deleteUserService } from "../../services/userService";
 import CommonNavbar from "../shared/navbar/CommonNavbar";
 
 const SysAdminTable = () => {
@@ -30,16 +30,39 @@ const SysAdminTable = () => {
     }
 
     const updateUser = async (id) => {
+    try {
+        const token = localStorage.getItem("Ecommerce-token");
 
-        const token = localStorage.getItem("Ecommerce-token")
-        const response = await updateUserService(id, updateName)
+        // Verifica que el campo 'Email' esté presente en el usuario
+        const userToUpdate = users.find((user) => user.id === id);
+        const { name, email } = userToUpdate; 
 
-        setUsers(users.map((user) => user.id === id ? { ...user, name: updateName } : user))
-        setEditId(null)
-        setUpdateName("")
+        const response = await fetch(`${API_BASE_URL}/Sys/UpdateUser/${id}`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: updateName,
+                email: email 
+            })
+        });
 
+        if (!response.ok) {
+            throw new Error(`Error al actualizar el usuario`);
+        }
+
+        setUsers(users.map((user) => user.id === id ? { ...user, name: updateName } : user));
+        setEditId(null);
+        setUpdateName("");
+        console.log("El usuario fue actualizado correctamente");
+    } catch (error) {
+        console.error("Error actualizando el usuario: ", error);
+        alert(`Error actualizando el usuario: ${error.message}`);
     }
-
+}
+    
     const handleUserDelete = (id) => {
         deleteUser(id);
     }
@@ -80,7 +103,7 @@ const SysAdminTable = () => {
                             </tr>
                         </thead>
                         <tbody>
-                        {userFiltered && userFiltered.map((user) => (
+                        {userFiltered.map((user) => (
                                 <tr key={user.id}>
                                     <td>
                                         {editId === user.id ? (

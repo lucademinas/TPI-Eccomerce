@@ -43,23 +43,3 @@ export const deleteUserService = async (id) => {
     }
 }
 
-export const updateUserService = async (id, updateName) => {
-    try {
-        const token = localStorage.getItem("Ecommerce-token")
-        const response = await fetch(`${API_BASE_URL}/Sys/UpdateUser/${id}`, {
-            method: "PUT",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ name: updateName })
-        });
-
-        if (!response.ok) {
-            throw new Error("Error al actualizar el nombre del usuario");
-        }
-        console.log("El usuario fue actualizado correctamente")
-    } catch (error) {
-        console.error("Error actualizando el usuario: ", error)
-    }
-}
