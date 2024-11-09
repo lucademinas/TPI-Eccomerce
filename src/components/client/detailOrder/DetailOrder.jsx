@@ -41,13 +41,11 @@ const DetailOrder = () => {
                   }),
             });
 
-            if (res.ok) {
-                alert("¡Orden completada exitosamente!");
-                // Aquí podrías vaciar el carrito o redirigir al usuario
-            } else {
-                alert("Hubo un error al finalizar la orden.");
+            if (!res.ok) {
+                throw new Error("")
             }
-
+                
+            alert("¡Orden completada exitosamente!");
             emptyCart()
             navigate("/")
         } catch (error) {
