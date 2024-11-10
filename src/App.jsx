@@ -17,6 +17,7 @@ import AdminView from "./components/admin/adminView/AdminView";
 import ProductList from "./components/admin/productList/ProductList";
 import OrderList from "./components/client/orderList/OrderList";
 import View from "./components/view/View";
+import EditProduct from "./components/admin/editProduct/EditProduct";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -115,6 +116,10 @@ const App = () => {
           <OrderList />
         </View>
       )
+    },
+    {
+      path:"/edit-product",
+      element:<AdminView><EditProduct/></AdminView>
     }
   ]);
 
