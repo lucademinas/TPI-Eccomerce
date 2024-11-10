@@ -42,6 +42,36 @@ const ProductList = () => {
         navigate('/product-form');
     };
 
+    const handlerEdit=(product)=>{
+        navigate("/edit-product",{state:{product}})
+    }
+    
+    const handlerEliminate = async (prod) =>{
+        const question = confirm("Estas Seguro?")
+        if(question){
+        try{
+        const res = await fetch(`${API_BASE_URL}/Product/DeleteProduct/${prod.id}`,{
+            method: "DELETE",
+            headers: {
+                accept: "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("Ecommerce-token")}`
+            }
+        })
+
+        if(!res.ok){
+            throw new Error("Error Inesperado")
+        }
+        const message = await res.text()
+        console.log("Mensaje del servidor: "+message)
+
+        setProducts(products.filter(x=>x.id!==prod.id))
+
+    }
+    catch(e){
+        console.log(e)
+    }}
+    
+    }
 
     return (
         <div className="p-4">
@@ -64,8 +94,8 @@ const ProductList = () => {
                                     Talle: {product.size}<br/>
                                     Stock: {product.stock}
                                 </Card.Text>
-                                <Button variant="primary" size="sm" >Editar</Button>
-                                <Button variant="danger" size="sm" className="ms-2" >Eliminar</Button>
+                                <Button variant="primary" size="sm" onClick={()=>handlerEdit(product)}>Editar</Button>
+                                <Button variant="danger" size="sm" className="ms-2" onClick={()=>{handlerEliminate(product)}}>Eliminar</Button>
                             </Card.Body>
                         </Card>
                     </Col>

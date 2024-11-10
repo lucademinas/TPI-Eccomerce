@@ -164,6 +164,7 @@ const ProductForm = () => {
       const message = await response.text()
       console.log("Mensaje:", message);
 
+      navigate("/product-list")
 
     } catch (error) {
       console.error(error);
@@ -297,7 +298,7 @@ const ProductForm = () => {
       </Row>
 
       <div className="d-flex justify-content-between mt-4">
-        <Button variant="dark" onClick={handleActualization}>ACTUALIZAR</Button>
+        <Button variant="dark" onClick={handleActualization}>AGREGAR PRODUCTO</Button>
         <Button variant="outline-danger" onClick={handleEliminate}>ELIMINAR</Button>
         <Button variant="outline-secondary" onClick={handlerCancelation}>CANCELAR</Button>
       </div>
