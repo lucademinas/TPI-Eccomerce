@@ -21,6 +21,7 @@ const OrderList = () => {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,  // Incluir el token en las cabeceras
+                        "Content-type": "application/json"
                     },
                 });
         
